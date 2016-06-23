@@ -3,9 +3,15 @@ package com.dan.manager;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.ws.rs.Produces;
 
-@Produces("application/json")
+/**
+ * Abstract class responsible for carrying out 
+ * low-level transactions on the ORM.
+ * 
+ * @author dan
+ *
+ * @param <T> The entity type.
+ */
 public abstract class AbstractManager<T> {
 
 	private final Class<T> _clazz;

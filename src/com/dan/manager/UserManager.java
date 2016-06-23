@@ -4,6 +4,11 @@ import javax.naming.NamingException;
 
 import com.dan.entity.User;
 
+/**
+ * Carries out User ORM operations.
+ * 
+ * @author dan
+ */
 public class UserManager extends AbstractManager<User> {
 	
 	public UserManager() {
