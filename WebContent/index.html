@@ -1,27 +1,24 @@
-<!DOCTYPE html>
 <html>
-<head>
-	<script src="js/main.js" type="text/javascript"></script>
-	
-</head>
-<body>
-	<p>Get Users</p>
-	
-	<button onclick="test(1)">Get User #1</button>
-	<button onclick="test(2)">Get User #2</button>
-	<button onclick="test(3)">Get User #3</button>
-	
- 	<div id="user"></div>
- 	
-    <script type="text/javascript">
-        
-        function test(id) {          
-            getUser(id).then(function(user){
-            	 document.getElementById("user").innerHTML = user.firstName;
-            },function(err){
-                console.log(err);
-            });
-        }
+  <head>
+    <title>CaterMe</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- 1. Load libraries -->
+     <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
     </script>
-</body>
+  </head>
+  <!-- 3. Display the application -->
+  <body>
+    <my-app>Loading...</my-app>
+    <p><a href="users.html">Users</a></p>
+  </body>
 </html>

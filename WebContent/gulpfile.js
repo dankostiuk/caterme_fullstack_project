@@ -4,17 +4,28 @@ var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var connect = require('gulp-connect');
+var ts = require('gulp-typescript');
 
+// uglifies js
 gulp.task('uglify', function () {
-    gulp.src('./WebContent/js/*.js')
+    gulp.src('app/*.js')
         .pipe(uglify())
         .pipe(concat('all-ugly.js'))
-        .pipe(gulp.dest('./WebContent/js'));
+        .pipe(gulp.dest('app'));
 });
 
+// compiles ts to js
+gulp.task('ts-compile', function () {
+	return gulp.src('app/*.ts')
+	    .pipe(ts({
+	        noImplicitAny: true
+	    }))
+	    .pipe(gulp.dest('app'));
+});
+
+// runs server with proxy to allow rest calls to 8080
 gulp.task('webserver', function() {
 	connect.server({
-		root: 'WebContent',
 		port: 9000,
 		livereload: true,
 		middleware: function(connect, o) {	
@@ -29,5 +40,5 @@ gulp.task('webserver', function() {
 	});
 });
 
-gulp.task('default', ['webserver']);
+gulp.task('default', ['ts-compile', 'webserver']);
 
