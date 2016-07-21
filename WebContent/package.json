@@ -44,13 +44,11 @@
     "typings": "^1.0.4"
   },
   "scripts": {
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
-    "lite": "lite-server",
+    "start": "tsc && concurrently \"npm run tsc:w\" \"gulp\"",
     "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "typings": "typings",
-    "test": "gulp uglify"
+    "typings": "typings"
   },
   "repository": {
     "type": "git",

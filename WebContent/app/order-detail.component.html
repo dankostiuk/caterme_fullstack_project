@@ -1,0 +1,12 @@
+<div *ngIf="order">
+    <h2>Order details: {{order.summary}}</h2>
+    <div>
+        <label>Summary: </label>
+        <input [(ngModel)]="order.summary" placeholder="summary">
+    </div>
+    <div>
+        <label>Description: </label>
+        <input value="{{order.description}}" placeholder="description">
+    </div>
+    <button (click)="goBack()">Back</button>
+</div>

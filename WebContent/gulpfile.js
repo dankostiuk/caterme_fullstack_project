@@ -14,7 +14,7 @@ gulp.task('uglify', function () {
         .pipe(gulp.dest('app'));
 });
 
-// compiles ts to js
+// compiles ts to js - don't use this since tsc performs better
 gulp.task('ts-compile', function () {
 	return gulp.src('app/*.ts')
 	    .pipe(ts({
@@ -40,5 +40,5 @@ gulp.task('webserver', function() {
 	});
 });
 
-gulp.task('default', ['ts-compile', 'webserver']);
+gulp.task('default', ['webserver']);
 

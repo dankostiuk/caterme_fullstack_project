@@ -1,5 +1,7 @@
 package com.dan.manager;
 
+import java.util.List;
+
 import javax.naming.NamingException;
 
 import com.dan.entity.User;
@@ -19,6 +21,11 @@ public class UserManager extends AbstractManager<User> {
 		User user = readTransaction(id);
 		
 		return user;
+	}
+	
+	public List<User> getAll() {
+		List<User> users = readAllTransaction();
+		return users;
 	}
 	
 	public void createUser(User user) {

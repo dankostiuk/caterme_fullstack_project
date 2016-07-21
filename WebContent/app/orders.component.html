@@ -1,0 +1,23 @@
+<h3>My Orders</h3>
+<ul class="orders">
+    <li *ngFor="let order of orders" (click)="onSelect(order)"
+        [class.selected]="order === selectedOrder">
+        <span class="order-element">
+            <span class="badge">{{order.summary}} - {{order.price}}</span>
+        </span>
+        <button class="delete-button" (click)="deleteOrder(order, $event)">Delete</button>
+    </li>
+</ul>
+
+<div class="error" *ngIf="error">{{error}}</div>
+<button (click)="addOrder()">Add New Order</button>
+<div *ngIf="addingOrder">
+    <my-order-detail (close)="close($event)"></my-order-detail>
+</div>
+
+<div *ngIf="selectedOrder">
+    <h2>
+        {{selectedOrder.summary | uppercase}} is my order
+    </h2>
+    <button (click)="gotoDetail()">View Details</button>
+</div>

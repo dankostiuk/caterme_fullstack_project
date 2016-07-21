@@ -1,8 +1,15 @@
 package com.dan.manager;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+
+import com.dan.entity.User;
 
 /**
  * Abstract class responsible for carrying out 
@@ -15,7 +22,7 @@ import javax.persistence.Persistence;
 public abstract class AbstractManager<T> {
 
 	private final Class<T> _clazz;
-	
+
 	private EntityManager _em;
 	private EntityManagerFactory _emf;
 	
@@ -44,5 +51,19 @@ public abstract class AbstractManager<T> {
 		_emf.close();
 	
 		return object;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> readAllTransaction() {
+		_em.getTransaction().begin();
+		
+		List<T> resultList = 
+			_em.createQuery("SELECT t from " + _clazz.getSimpleName() + " t")
+				.getResultList();
+		 
+		_em.close();
+		_emf.close();
+		
+		 return resultList;
 	}
 }
