@@ -3,6 +3,7 @@ package com.dan.manager;
 import java.util.List;
 
 import javax.naming.NamingException;
+import javax.persistence.EntityNotFoundException;
 
 import com.dan.entity.User;
 
@@ -19,6 +20,12 @@ public class UserManager extends AbstractManager<User> {
 	
 	public User getUser(int id) throws NamingException {
 		User user = readTransaction(id);
+		
+		return user;
+	}
+	
+	public User findUser(String username) throws EntityNotFoundException {
+		User user = findTransaction("username", username);
 		
 		return user;
 	}

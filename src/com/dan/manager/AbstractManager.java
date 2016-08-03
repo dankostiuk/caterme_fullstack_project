@@ -1,15 +1,13 @@
 package com.dan.manager;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-
-import com.dan.entity.User;
 
 /**
  * Abstract class responsible for carrying out 
@@ -33,37 +31,55 @@ public abstract class AbstractManager<T> {
 	}
 	
 	public void writeTransaction(T object) {
-		_em.getTransaction().begin();
-		
+
 		_em.persist(object);
 		_em.getTransaction().commit();
-		
-		_em.close();
-		_emf.close();
+
 	}
 	
 	public T readTransaction(long id) {
-		_em.getTransaction().begin();
-		
 		T object = _em.find(_clazz, id);
 		
-		_em.close();
-		_emf.close();
-	
 		return object;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<T> readAllTransaction() {
-		_em.getTransaction().begin();
-		
 		List<T> resultList = 
 			_em.createQuery("SELECT t from " + _clazz.getSimpleName() + " t")
 				.getResultList();
+
+		return resultList;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public T findTransaction(String key, String value) throws EntityNotFoundException {
+		List<T> resultList = _em.createQuery("SELECT t FROM " + _clazz.getSimpleName() + " t where t." + key + " = '" + value + "'")
+				 .getResultList();
 		 
+		if (resultList.isEmpty())
+		{
+			throw new EntityNotFoundException();
+		}
+		 
+		T entity = resultList.get(0);
+		return entity;
+	}
+	
+	/**
+	 * Helper method to start EntityManager transaction
+	 */
+	private void startPersistence()
+	{
+		_em.getTransaction().begin();
+	}
+	
+	/**
+	 * Helper method to close EntityManager and EntityManagerFactor transactions
+	 */
+	private void closePersistence()
+	{
 		_em.close();
 		_emf.close();
-		
-		 return resultList;
 	}
 }

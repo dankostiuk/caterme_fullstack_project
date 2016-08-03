@@ -15,10 +15,6 @@ export class OrderService {
 
     getOrders() {
 
-        let heroes = [
-            {id: 11, summary: 'Mr. Nice', description: 'asdf'}
-        ];
-
         return this.http.get(this.allOrdersUrl)
             .toPromise()
             .then(response => response.json() as Order[])

@@ -1,3 +1,10 @@
+<h1>{{title}}</h1>
+
+<nav>
+    <a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
+    <a [routerLink]="['/orders']" routerLinkActive="active">Orders</a>
+</nav>
+
 <h3>My Orders</h3>
 <ul class="orders">
     <li *ngFor="let order of orders" (click)="onSelect(order)"

@@ -3,6 +3,7 @@ import { provideRouter, RouterConfig } from '@angular/router';
 import { OrdersComponent } from './orders.component';
 import { OrderDetailComponent } from './order-detail.component'
 import { DashboardComponent } from './dashboard.component';
+import { LoginComponent } from './login.component';
 
 const routes: RouterConfig = [
     {
@@ -18,8 +19,12 @@ const routes: RouterConfig = [
         component: DashboardComponent
     },
     {
+        path: 'login',
+        component: LoginComponent
+    },
+    {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: '/login',
         pathMatch: 'full'
     }
 ];

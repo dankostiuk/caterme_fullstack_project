@@ -1,3 +1,11 @@
+<h1>{{title}}</h1>
+
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/orders">Orders</a>
+</nav>
+
+
 <h3>Top Orders</h3>
 <div class="grid grid-pad">
     <div *ngFor="let order of orders" (click)="gotoDetail(order)" class="col-1-4">
