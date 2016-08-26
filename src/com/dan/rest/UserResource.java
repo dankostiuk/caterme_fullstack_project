@@ -93,7 +93,7 @@ public class UserResource {
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createUser(User user) {
-		_userManager.createUser(user);
+		_userManager.saveUser(user);
 		return Response.status(200).build();
 	}
 }

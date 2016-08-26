@@ -31,4 +31,13 @@ public class OrderManager extends AbstractManager<Order> {
 	public void createOrder(Order order) {
 		writeTransaction(order);
 	}
+	
+	public void updateOrder(Order order) {
+		Order currentOrder = readTransaction(order.getId());
+		currentOrder.setDescription(order.getDescription());
+		currentOrder.setPrice(order.getPrice());
+		currentOrder.setSummary(order.getSummary());
+		
+		writeTransaction(currentOrder);
+	}
 }

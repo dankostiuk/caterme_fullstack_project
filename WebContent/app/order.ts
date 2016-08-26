@@ -4,4 +4,5 @@ export class Order {
     summary: string;
     description: string;
     price: number;
+    eta: string;
 }

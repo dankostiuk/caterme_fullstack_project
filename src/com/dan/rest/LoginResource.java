@@ -29,8 +29,7 @@ public class LoginResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response validateLogin(@QueryParam("email") String email, 
 			@QueryParam("password") String password) {
-		if (StringUtils.isEmpty(email) || StringUtils.isEmpty(password))
-		{
+		if (StringUtils.isEmpty(email) || StringUtils.isEmpty(password)) {
 			return Response.status(400)
 				.entity("Bad Request. Ensure non-emtpy email and passwords are supplied.")
 				.build();

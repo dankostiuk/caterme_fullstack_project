@@ -31,10 +31,10 @@ public abstract class AbstractManager<T> {
 	}
 	
 	public void writeTransaction(T object) {
-
+		startPersistence();
 		_em.persist(object);
 		_em.getTransaction().commit();
-
+		closePersistence();
 	}
 	
 	public T readTransaction(long id) {
@@ -59,7 +59,7 @@ public abstract class AbstractManager<T> {
 		 
 		if (resultList.isEmpty())
 		{
-			throw new EntityNotFoundException();
+			throw new EntityNotFoundException("Entity could not be found.");
 		}
 		 
 		T entity = resultList.get(0);

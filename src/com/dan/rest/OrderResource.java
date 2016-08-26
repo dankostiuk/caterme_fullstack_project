@@ -31,9 +31,14 @@ public class OrderResource {
 		_orderManager = new OrderManager();
 	}
 	
+	/**
+	 * Get a single order by id.
+	 * @param id The id of the order.
+	 * @return Response containing the order for the given id.
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUser(@QueryParam("id") Integer id) {
+	public Response getOrder(@QueryParam("id") Integer id) {
 		if (id == null)
 		{
 			return Response.status(400).build();
@@ -53,10 +58,14 @@ public class OrderResource {
 		return Response.status(200).entity(order).build();
 	}
 	
+	/**
+	 * Get all orders.
+	 * @return Response containing all orders.
+	 */
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllUsers() {
+	public Response getAllOrders() {
 		List<Order> orders = _orderManager.getAll();
 		
 		if (orders == null || orders.size() == 0) {
@@ -66,11 +75,29 @@ public class OrderResource {
 		return Response.status(200).entity(orders).build();
 	}
 	
+	/**
+	 * Creates an order
+	 * @param order The order passed in from the client.
+	 * @return Response indicating a success or error.
+	 */
 	@POST
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response createUser(Order order) {
+	public Response createOrder(Order order) {
 		_orderManager.createOrder(order);
+		return Response.status(200).build();
+	}
+	
+	/**
+	 * Updates an order
+	 * @param order The order passed in from the client.
+	 * @return Response indicating a success or error.
+	 */
+	@POST
+	@Path("/update")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateOrder(Order order) {
+		_orderManager.updateOrder(order);
 		return Response.status(200).build();
 	}
 }

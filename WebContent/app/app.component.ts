@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
+import {CookieService} from 'angular2-cookie/core';
 
 import { LoginService } from './login.service';
 import { OrderService } from './order.service';
@@ -12,7 +13,7 @@ import { OrderService } from './order.service';
     `,
     styleUrls: ['app/app.component.css'],
     directives: [ROUTER_DIRECTIVES],
-    providers: [LoginService, OrderService]
+    providers: [LoginService, OrderService, CookieService]
 })
 
 export class AppComponent {

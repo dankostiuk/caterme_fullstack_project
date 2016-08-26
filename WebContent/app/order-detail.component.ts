@@ -7,7 +7,7 @@ import { OrderService } from './order.service';
 @Component({
   selector: 'my-order-detail',
   templateUrl: 'app/order-detail.component.html',
-  styleUrls: ['app/order-detail.component.css']
+  styleUrls: ['app/order-detail.component.css', '../css/bootstrap.min.css']
 })
 
 export class OrderDetailComponent implements OnInit, OnDestroy {

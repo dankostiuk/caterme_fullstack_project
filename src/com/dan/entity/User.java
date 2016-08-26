@@ -33,14 +33,20 @@ public class User implements Serializable {
 	@Column(name="last_name")
 	private String lastName;
 	
-	private long phone;
+	private Long phone;
+	
+	@Column(name="login_count")
+	private Integer loginCount;
+	
+	@Column(name="login_token")
+	private String loginToken;
 	
 	public User() {
 		
 	}
 	
 	public User(Long id, String username, String password, String firstName,
-			String lastName, long phone) {
+			String lastName, Long phone, Integer loginCount, String loginToken) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -48,6 +54,8 @@ public class User implements Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phone = phone;
+		this.loginCount = loginCount;
+		this.loginToken = loginToken;
 	}
 
 	public long getId() {
@@ -85,11 +93,27 @@ public class User implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public long getPhone() {
+	public Long getPhone() {
 		return phone;
 	}
 	
-	public void setPhone(long phone) {
+	public void setPhone(Long phone) {
 		this.phone = phone;
-	}	
+	}
+
+	public Integer getLoginCount() {
+		return loginCount;
+	}
+
+	public void setLoginCount(Integer loginCount) {
+		this.loginCount = loginCount;
+	}
+
+	public String getLoginToken() {
+		return loginToken;
+	}
+
+	public void setLoginToken(String loginToken) {
+		this.loginToken = loginToken;
+	}
 }

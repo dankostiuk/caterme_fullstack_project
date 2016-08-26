@@ -1,12 +1,36 @@
 <div *ngIf="order">
     <h2>Order details: {{order.summary}}</h2>
-    <div>
-        <label>Summary: </label>
-        <input [(ngModel)]="order.summary" placeholder="summary">
+    <div class="row">
+        <div class="col-md-1">
+            <label>Summary: </label>
+        </div>
+        <div class="col-md-3">
+            <input [(ngModel)]="order.summary" placeholder="summary">
+        </div>
     </div>
-    <div>
-        <label>Description: </label>
-        <input value="{{order.description}}" placeholder="description">
+    <div class="row">
+        <div class="col-md-1">
+            <label>Description: </label>
+        </div>
+        <div class="col-md-3">
+            <input value="{{order.description}}" placeholder="description">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <label>Price: </label>
+        </div>
+        <div class="col-md-3">
+            <input value="{{order.price}}" placeholder="price">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <label>Time until ready: </label>
+        </div>
+        <div class="col-md-3">
+            <input value="{{order.eta}}" placeholder="eta">
+        </div>
     </div>
     <button (click)="goBack()">Back</button>
 </div>
