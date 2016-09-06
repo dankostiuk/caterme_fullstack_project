@@ -1,19 +1,13 @@
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
-import {CookieService} from 'angular2-cookie/core';
-
-import { LoginService } from './login.service';
-import { OrderService } from './order.service';
 
 @Component({
+  moduleId: module.id,
   selector: 'my-app',
   template: `
 
 <router-outlet></router-outlet>
     `,
-    styleUrls: ['app/app.component.css'],
-    directives: [ROUTER_DIRECTIVES],
-    providers: [LoginService, OrderService, CookieService]
+    styleUrls: ['app.component.css']
 })
 
 export class AppComponent {
