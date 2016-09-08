@@ -8,7 +8,9 @@ import { routing, routedComponents } from './app.routes';
 
 import { CookieService } from 'angular2-cookie/core';
 import { LoginService } from './login.service';
+import { RegistrationService } from "./registration.service";
 import { OrderService } from './order.service';
+
 
 @NgModule({
   imports:      [
@@ -25,6 +27,7 @@ import { OrderService } from './order.service';
   providers:    [
       CookieService,
       LoginService,
+      RegistrationService,
       OrderService,
   ],
   bootstrap:    [AppComponent],

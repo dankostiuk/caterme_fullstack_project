@@ -58,7 +58,7 @@ public class UserManager extends AbstractManager<User> {
 	 */
 	public void saveUser(User user) {
 		
-		if (user.getId() == -1) {
+		if (user.getId() == null || user.getId() == -1) {
 			writeTransaction(user);
 		} else {
 			User currentUser = readTransaction(user.getId());

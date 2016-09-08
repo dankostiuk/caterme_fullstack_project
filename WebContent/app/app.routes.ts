@@ -5,8 +5,26 @@ import { OrdersComponent } from './orders.component';
 import { OrderDetailComponent } from './order-detail.component'
 import { DashboardComponent } from './dashboard.component';
 import { LoginComponent } from './login.component';
+import { RegisterComponent } from './register.component';
 
 const appRoutes: Routes = [
+    {
+        path: '',
+        redirectTo: '/login',
+        pathMatch: 'full'
+    },
+    {
+        path: 'login',
+        component: LoginComponent
+    },
+    {
+        path: 'register',
+        component: RegisterComponent
+    },
+    {
+        path: 'dashboard',
+        component: DashboardComponent
+    },
     {
         path: 'orders',
         component: OrdersComponent
@@ -14,22 +32,9 @@ const appRoutes: Routes = [
     {
         path: 'detail/:id',
         component: OrderDetailComponent
-    },
-    {
-        path: 'dashboard',
-        component: DashboardComponent
-    },
-    {
-        path: 'login',
-        component: LoginComponent
-    },
-    {
-        path: '',
-        redirectTo: '/login',
-        pathMatch: 'full'
     }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
 
-export const routedComponents = [OrdersComponent, OrderDetailComponent, DashboardComponent, LoginComponent];
+export const routedComponents = [OrdersComponent, OrderDetailComponent, DashboardComponent, LoginComponent, RegisterComponent];

@@ -7,7 +7,7 @@ import { CookieService } from 'angular2-cookie/core';
 @Component({
     selector: 'my-login',
     templateUrl: 'app/login.component.html',
-    styleUrls: ['app/login.component.css', '../css/bootstrap.min.css']
+    styleUrls: ['app/login.component.css', '../css/bootstrap.min.css'],
 })
 
 export class LoginComponent implements OnInit {
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     }
 
     gotoRegister() {
-        this.router.navigateByUrl('/register');
+        this.router.navigate(['/register']);
     }
 
     gotoDashboard(result) {

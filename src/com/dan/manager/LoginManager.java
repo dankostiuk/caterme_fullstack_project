@@ -9,6 +9,7 @@ import javax.security.auth.login.LoginException;
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 
 import com.dan.entity.User;
+import com.dan.util.PasswordUtil;
 
 
 /**
@@ -19,8 +20,6 @@ import com.dan.entity.User;
 public class LoginManager extends AbstractManager<Void> {
 	
 	private UserManager _userManager;
-	
-	private static final String MD5 = "MD5";
 	
 	public LoginManager() {
 		super(null);
@@ -45,7 +44,7 @@ public class LoginManager extends AbstractManager<Void> {
 		
 		String md5Checksum;
 		try {
-			md5Checksum = generateMd5Checksum(password);
+			md5Checksum = PasswordUtil.generateMd5Checksum(password);
 		} catch (LoginException e) {
 			return false;
 		}
@@ -54,7 +53,7 @@ public class LoginManager extends AbstractManager<Void> {
 		if (user.getPassword().equals(md5Checksum)) {	
 
 			// update login count and save user
-			user.setLoginCount(user.getLoginCount() + 1);
+			user.setLoginCount((user.getLoginCount() == null ? 0 : user.getLoginCount()) + 1);
 			_userManager.saveUser(user);
 			
 			return true;
@@ -70,22 +69,5 @@ public class LoginManager extends AbstractManager<Void> {
 	private String generateLoginToken() {
 		return UUID.randomUUID().toString();
 	}
-	
-	/**
-	 * Generates and returns an MD5 checksum for the given password.
-	 * @param plaintextPassword The plaintext password.
-	 * @return The md5Checksum of the password.
-	 * @throws LoginException If an error occurs.
-	 */
-	private String generateMd5Checksum(String plaintextPassword) throws LoginException {
-		
-		String md5Checksum = null;
-		try {
-			MessageDigest md5 = MessageDigest.getInstance(MD5);
-			md5Checksum = (new HexBinaryAdapter()).marshal(md5.digest(plaintextPassword.getBytes())).toLowerCase();	
-		} catch (NoSuchAlgorithmException e) {
-			throw new LoginException("An error occured while processing password.");
-		}
-		return md5Checksum;
-	}
+
 }

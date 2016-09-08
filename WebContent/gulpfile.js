@@ -27,8 +27,9 @@ gulp.task('ts-compile', function () {
 gulp.task('webserver', function() {
 	connect.server({
 		port: 9000,
+		debug: true,
 		livereload: true,
-		middleware: function(connect, o) {	
+		middleware: function(connect, o) {
 			return [ (function() {
 				var url = require('url');
 		        var proxy = require('proxy-middleware');
