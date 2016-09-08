@@ -29,8 +29,8 @@ gulp.task('webserver', function() {
 		port: 9000,
 		debug: true,
 		livereload: true,
-		middleware: function(connect, o) {
-			return [ (function() {
+		middleware: function(req, res, next) {
+			return [(function() {
 				var url = require('url');
 		        var proxy = require('proxy-middleware');
 		        var options = url.parse('http://localhost:8080/CaterMe/rest');
