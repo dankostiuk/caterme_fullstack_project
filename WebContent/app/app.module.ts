@@ -4,6 +4,7 @@ import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent }   from './app.component';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { routing, routedComponents } from './app.routes';
 
 import { CookieService } from 'angular2-cookie/core';
@@ -18,7 +19,8 @@ import { OrderService } from './order.service';
                 // Forms
                 FormsModule,
                 routing,
-                HttpModule
+                HttpModule,
+                ToastModule
   ],
   declarations: [
                 AppComponent,

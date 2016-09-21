@@ -14,7 +14,6 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 export class RegisterComponent {
     regInfo: RegistrationInfo;
-    error: any;
     confPassword: string;
 
     constructor(private router: Router,
@@ -40,42 +39,42 @@ export class RegisterComponent {
     register(regInfo: RegistrationInfo) {
 
         if (!regInfo.username || regInfo.username.length == 0) {
-            this.error = "Email must not be blank."
+            this.showWarning("Email must not be blank.");
             return;
         }
 
         if (!regInfo.password || regInfo.password.length == 0) {
-            this.error = "Password must not be blank."
+            this.showWarning("Password must not be blank.");
             return;
         }
 
         if (regInfo.password != this.confPassword) {
-            this.error = "Passwords must match."
+            this.showWarning("Passwords must match.");
             return;
         }
 
         if (!regInfo.firstName || regInfo.firstName.length == 0) {
-            this.error = "First name must not be blank."
+            this.showWarning("First name must not be blank.");
             return;
         }
 
         if (!regInfo.lastName || regInfo.lastName.length == 0) {
-            this.error = "Last name must not be blank."
+            this.showWarning("Last name must not be blank.");
             return;
         }
 
         if (!regInfo.phone || regInfo.phone.length == 0) {
-            this.error = "Phone number must not be blank."
+            this.showWarning("Phone number must not be blank.");
             return;
         } else {
             if (isNaN(regInfo.phone) || regInfo.phone.length != 10) {
-                this.error = "Phone number must be a 10-digit number."
+                this.showWarning("Phone number must be a 10-digit number.");
                 return;
             }
         }
 
         if (!regInfo.address || regInfo.address.length == 0) {
-            this.error = "Company address must not be blank."
+            this.showWarning("Company address must not be blank.");
             return;
         }
 
@@ -84,8 +83,12 @@ export class RegisterComponent {
     }
 
     showSuccess(username) {
-        this.toastr.success('Registered user ' + username + ' successfully')
+        this.toastr.success('Registered user ' + username + ' successfully');
         this.gotoLogin();
+    }
+
+    showWarning(message) {
+        this.toastr.warning(message, null);
     }
 
 }

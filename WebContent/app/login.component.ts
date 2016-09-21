@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { CookieService } from 'angular2-cookie/core';
 
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 @Component({
     selector: 'my-login',
     templateUrl: 'app/login.component.html',
@@ -18,24 +20,25 @@ export class LoginComponent implements OnInit {
 
     constructor(private router: Router,
                 private loginService: LoginService,
-                private cookieService: CookieService) {
+                private cookieService: CookieService,
+                private toastr: ToastsManager) {
     }
 
     isValidLogin(email, password) {
 
         if (!email || email.length == 0) {
-            this.error = 'Email must not be blank.';
+            this.showWarning('Email must not be blank.');
             return
         }
 
         if (!password || password.length == 0) {
-            this.error = 'Password must not be blank.';
+            this.showWarning('Password must not be blank.');
             return
         }
 
         this.loginService.isValidLogin(email, password)
             .then(result => this.gotoDashboard(result))
-            .catch(error => this.error = error);
+            .catch(error => this.showWarning(error));
     }
 
     ngOnInit() {
@@ -55,7 +58,15 @@ export class LoginComponent implements OnInit {
 
             this.router.navigateByUrl('/dashboard');
         } else {
-            this.error = 'Incorrect email and/or password.';
+            this.showError('Incorrect email and/or password.');
         }
+    }
+
+    showWarning(message) {
+        this.toastr.warning(message, null);
+    }
+
+    showError(message) {
+        this.toastr.error(message, null);
     }
 }
